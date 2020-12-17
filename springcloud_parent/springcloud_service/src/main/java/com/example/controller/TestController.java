@@ -18,6 +18,7 @@ public class TestController {
        User user=new User();
        user.setAge(id);
        user.setName("test");
+        System.out.println("调用的服务ID"+id);
        return user;
    }
 }

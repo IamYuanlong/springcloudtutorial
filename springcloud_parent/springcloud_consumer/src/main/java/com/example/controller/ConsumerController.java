@@ -30,10 +30,11 @@ public class ConsumerController {
     public String getUser(@PathVariable Integer id){
 //        String url = "http://localhost:8080/testserver/" + id;
         //获取eureka中注册的user-service的实例
-        List<ServiceInstance> serviceInstances = discoveryClient.getInstances("springcloud-server");
-        ServiceInstance serviceInstance = serviceInstances.get(0);
-
-        String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/testserver/" + id;
+//        List<ServiceInstance> serviceInstances = discoveryClient.getInstances("springcloud-server");
+//        ServiceInstance serviceInstance = serviceInstances.get(0);
+//
+//        String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/testserver/" + id;
+        String url = "http://springcloud-server/testserver/" + id;
         return restTemplate.getForObject(url, String.class);
 }
 }
