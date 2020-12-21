@@ -1,0 +1,30 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/alexyuan666/mylearnrepository.git
+          #mq的配置，以下都为默认值，可以不用配置
+  rabbitmq:
+    port: 5672
+    host: 192.168.15.128
+    username: yuanlong
+    password: yuanlong
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 前端发送配置更新的信息的url地址
+        include: bus-refresh

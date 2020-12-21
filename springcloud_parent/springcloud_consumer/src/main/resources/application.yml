@@ -10,3 +10,12 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
     # 获取服务地址列表间隔时间，默认30秒
     registry-fetch-interval-seconds: 10
+
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true

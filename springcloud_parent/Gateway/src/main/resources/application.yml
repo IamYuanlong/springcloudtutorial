@@ -1,0 +1,54 @@
+server:
+  port: 10010
+spring:
+  application:
+    #eureka中网关服务的名称
+    name: gateway-server
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://127.1.1:9909"
+            allowedMethods:
+              - GET
+      routes:
+        #路由的id
+        - id: user-server-route
+          #使用服务名称替代地址，eureka中不止一个服务
+          uri: lb://springcloud-server
+          #配置请求转发的
+          #uri: http://127.0.0.1:8082
+          #路由断言，配置访问的路径
+          predicates:
+           - Path=/**
+           #过滤器
+          filters:
+           - PrefixPath=/testserver
+
+
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+  instance:
+    prefer-ip-address: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+ribbon:
+  ConnectTimeout: 1000
+  ReadTimeout: 2000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
